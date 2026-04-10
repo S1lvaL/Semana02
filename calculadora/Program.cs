@@ -9,22 +9,19 @@ app.MapGet("/", () => {
     return new {mensagem="API em exercução ..." };
 });
 
-app.MapGet("/calcula/{opcao}/{valor1}/{valor2}", (int opcao, int valor1, int valor2) => {
-    switch(opcao){
-        case 1:
-            return new { mensagem = "Soma = ", resultado = valor1 + valor2 };
-        case 2:
-            return new { mensagem = "Subtração = ", resultado = valor1 - valor2 };
-        case 3:
-            return new { mensagem = "Multiplicação = ", resultado = valor1 * valor2 };
-        case 4:
-            if (valor2 == 0){
-                return new { mensagem = "Não pode dividir por zero", resultado = 0};
-            }
-            return new { mensagem = "Divisão = ", resultado = valor1 / valor2 };
-        default:
-            return new { mensagem = "operação invalida ...", resultado = 0 };
-    }
+ app.MapGet("/calcula/soma/{a}/{b}", (double a, double b) => {
+    return new { mensagem = "Soma = ", resultado = a + b };    
+ });
+
+ app.MapGet("/calcula/subtracao/{a}/{b}", (double a, double b) => {
+        return new { mensagem = "Subtração = ", resultado = a - b };
+ });
+
+ app.MapGet("/calcula/multiplicao/{a}/{b}", (double a, double b) => {
+    return new { mensagem = "Multiplicação = ", resultado = a * b };
+ });
+ app.MapGet("/calcula/divisao/{a}/{b}", (double a, double b) => {
+    return new { mensagem = "divisao = ", resultado = a / b };
  });
 
 // Inicia o servidor web é iniciado e passa a aguardar requisições HTTP dos clientes
